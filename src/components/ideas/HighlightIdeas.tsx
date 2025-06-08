@@ -11,7 +11,7 @@ export function HighlightIdeas(props: {setLoading: (loading: boolean) => void}){
 
     useEffect(() => {
         loadData()
-    })
+    }, [])
 
     const loadData = async () => {
         const ideas = await loadHighlightIdeas(notificationError)

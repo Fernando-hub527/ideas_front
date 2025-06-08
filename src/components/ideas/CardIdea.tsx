@@ -28,13 +28,13 @@ export function CardIdea(props: {idea: Idea, setLoading: (loading: boolean) => v
 
     return (
         <Box 
-            shadow={"0px 5px 20px 3px gray"} 
+            shadow={"0px 3px 10px 0px gray"} 
             bg="gray.200" 
             minW="250"
             maxW="280"
             borderRadius="2xl" p={5} w="20%"
             transition="all 0.3s ease"
-            _hover={{transform: "translateY(5px)", shadow: "0px 1px 20px 3px gray"}}
+            _hover={{transform: "translateY(5px)", shadow: "0px 0px 10px 0px gray"}}
         >
         <VStack align="start" spacing={6} width={"100%"}>
             <Badge colorScheme="blue">{props.idea.category}</Badge>
