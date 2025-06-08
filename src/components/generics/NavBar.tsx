@@ -11,7 +11,7 @@ export function NavBar() {
     <>
         <header
             style={{ boxShadow: "0px 1px 5px 0px gray" }}
-            className="w-full fixed left-0 top-0 bg-white px-4 py-2 flex justify-between">
+            className="z-1 w-full fixed left-0 top-0 bg-white px-4 py-2 flex justify-between">
             <div className="flex items-center gap-6">
             <span className="font-bold text-gray-700">Ideias</span>
             <nav className="flex gap-4 text-sm text-gray-700">

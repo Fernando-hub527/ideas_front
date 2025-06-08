@@ -1,4 +1,4 @@
-import type { NewIdea } from "./models"
+import type { Idea, NewIdea, Pagination } from "./models"
 
 type typeNotification = (msg: string, description ?: string) => void
 
@@ -15,7 +15,7 @@ export async function voteOnIdea(ideaId: number, success: typeNotification, erro
         setTimeout(() => {
             success("Seu voto foi registrado com sucesso")
             res(true)
-        }, 2000)
+        }, 1000)
     })
 
     
@@ -54,4 +54,101 @@ export async function loadHighlightIdeas(error: typeNotification){
             createdAt: new Date()
         },
     ]
+}
+
+export async function loadIdeas(error: typeNotification, page: number, order: "most_voted" | "latest", title ?: string): Promise<Pagination<Idea>>{
+    const result =  {
+        currentPage: page,
+        totalPages: 10,
+        itemsPerPage: 10,
+        totalItems: 100,
+        data: [
+        {
+            id: 10, title: "Sistema de Feedback em Tempo Real", 
+            description: "Permite que usuários votem e comentem instantaneamente em ideias. Permite que usuários votem e comentem instantaneamente em ideias. Permite que usuários votem e comentem instantaneamente em ideias. Permite que usuários votem e comentem instantaneamente em ideias. Permite que usuários votem e comentem instantaneamente em ideias. Permite que usuários votem e comentem instantaneamente em ideias. Permite que usuários votem e comentem instantaneamente em ideias.", 
+            author: "Fernando Coelho",
+            category: "TECNOLOGIA",
+            liked: false,
+            createdAt: new Date()
+        },
+        {
+            id: 2, title: "Sistema de Feedback em Tempo Real", 
+            description: "Permite que usuários votem e comentem instantaneamente em ideias.",
+            author: "Fernando Coelho",
+            category: "SOCIAL",
+            liked: false,
+            createdAt: new Date()
+        },
+            {
+            id: 3, title: "Sistema de Feedback em Tempo Real", 
+            description: "Permite que usuários votem e comentem instantaneamente em ideias.",
+            author: "Fernando Coelho",
+            category: "CULTURA",
+            liked: false,
+            createdAt: new Date()
+        },
+                    {
+            id: 3, title: "Sistema de Feedback em Tempo Real", 
+            description: "Permite que usuários votem e comentem instantaneamente em ideias.",
+            author: "Fernando Coelho",
+            category: "CULTURA",
+            liked: false,
+            createdAt: new Date()
+        },
+                    {
+            id: 3, title: "Sistema de Feedback em Tempo Real", 
+            description: "Permite que usuários votem e comentem instantaneamente em ideias.",
+            author: "Fernando Coelho",
+            category: "CULTURA",
+            liked: false,
+            createdAt: new Date()
+        },
+                    {
+            id: 3, title: "Sistema de Feedback em Tempo Real", 
+            description: "Permite que usuários votem e comentem instantaneamente em ideias.",
+            author: "Fernando Coelho",
+            category: "CULTURA",
+            liked: false,
+            createdAt: new Date()
+        },
+                    {
+            id: 3, title: "Sistema de Feedback em Tempo Real", 
+            description: "Permite que usuários votem e comentem instantaneamente em ideias.",
+            author: "Fernando Coelho",
+            category: "CULTURA",
+            liked: false,
+            createdAt: new Date()
+        },
+                    {
+            id: 3, title: "Sistema de Feedback em Tempo Real", 
+            description: "Permite que usuários votem e comentem instantaneamente em ideias.",
+            author: "Fernando Coelho",
+            category: "CULTURA",
+            liked: false,
+            createdAt: new Date()
+        },
+                    {
+            id: 3, title: "Sistema de Feedback em Tempo Real", 
+            description: "Permite que usuários votem e comentem instantaneamente em ideias.",
+            author: "Fernando Coelho",
+            category: "CULTURA",
+            liked: false,
+            createdAt: new Date()
+        },
+                    {
+            id: 3, title: "Sistema de Feedback em Tempo Real", 
+            description: "Permite que usuários votem e comentem instantaneamente em ideias.",
+            author: "Fernando Coelho",
+            category: "CULTURA",
+            liked: false,
+            createdAt: new Date()
+        },
+    ]
+    }
+
+    return new Promise((res) => {
+        setTimeout(() => {
+            res(result)
+        }, 100)
+    });
 }

@@ -10,13 +10,14 @@ export function HighlightIdeas(props: {setLoading: (loading: boolean) => void}){
     const [highlight, setHighlight] = useState(new Array<Idea>())
 
     useEffect(() => {
+        async function loadData(){
+            const ideas = await loadHighlightIdeas(notificationError)
+            setHighlight(ideas)
+        }
         loadData()
     }, [])
 
-    const loadData = async () => {
-        const ideas = await loadHighlightIdeas(notificationError)
-        setHighlight(ideas)
-    }
+  
     const setLiked = (ideaId: number) => {
         setHighlight((ideas) => {
             ideas = ideas.map(idea => {
@@ -35,14 +36,16 @@ export function HighlightIdeas(props: {setLoading: (loading: boolean) => void}){
     })
 
     return (
-        <Box width={"max-content"} paddingLeft={0}>
-            <Heading fontWeight={"extrabold"} fontSize="2xl" color="blue.500" mb={4}>
+        <Box w={{ base: "full", md: "fit-content" }} px={{ base: 4, md: 8 }} >
+            <Heading fontWeight="extrabold" fontSize={{ base: "lg", md: "2xl" }} color="blue.500" mb={4}>
                 Ideias em Destaque
             </Heading>
 
-            <Box paddingLeft={10} overflowX="auto" py={2} width= "100%" css={{"&::-webkit-scrollbar": {  height: "0px"}}}>
-                <HStack spacing={10} width= "100%"minW="max-content">
-                {cardsHighlight}
+            <Box overflowX="auto" py={2}
+                css={{"&::-webkit-scrollbar": {height: "0px"}, scrollbarWidth: "none", }}
+            >
+                <HStack spacing={{ base: 4, md: 6, lg: 10 }} paddingLeft={5}  minW="max-content">
+                    {cardsHighlight}
                 </HStack>
             </Box>
         </Box>
