@@ -1,4 +1,4 @@
-import type { Idea, NewIdea, Pagination } from "./models"
+import type { Idea, IdeaListingParam, NewIdea, Pagination } from "./models"
 
 type typeNotification = (msg: string, description ?: string) => void
 
@@ -56,7 +56,7 @@ export async function loadHighlightIdeas(error: typeNotification){
     ]
 }
 
-export async function loadIdeas(error: typeNotification, page: number, order: "most_voted" | "latest", title ?: string): Promise<Pagination<Idea>>{
+export async function loadIdeas(error: typeNotification, page: number, params: IdeaListingParam): Promise<Pagination<Idea>>{
     const result =  {
         currentPage: page,
         totalPages: 10,
@@ -149,6 +149,6 @@ export async function loadIdeas(error: typeNotification, page: number, order: "m
     return new Promise((res) => {
         setTimeout(() => {
             res(result)
-        }, 100)
+        }, page == 1 ? 2000: 100)
     });
 }

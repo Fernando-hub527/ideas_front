@@ -5,3 +5,5 @@ export type Idea = {
 }
 export type Pagination<T> = {currentPage: number, totalPages: number, itemsPerPage: number, totalItems: number, data: T[]}
 export type Comment = {title: string, description: string, category: number}
+
+export type IdeaListingParam = {orderBy: "most_voted" | "latest", titleSearch: string}

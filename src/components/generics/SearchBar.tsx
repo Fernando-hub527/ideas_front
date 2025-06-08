@@ -4,10 +4,13 @@ import {
   Input,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import type { IdeaListingParam } from "../../services/models";
 
-export function SearchBar() {
-  const [activeTab, setActiveTab] = useState("votadas");
+export function SearchBar({listingParam, setListingParam}: {listingParam: IdeaListingParam, setListingParam: (param: IdeaListingParam) => void}) {
+
+  const sendListParam = (ordeyBy: "most_voted" | "latest", title: string) => {
+    setListingParam({orderBy: ordeyBy, titleSearch: title})
+  }
 
   return (
     <Flex alignSelf="start" direction={{ base: "column", md: "row" }} justify="space-between"
@@ -16,18 +19,18 @@ export function SearchBar() {
     >
       <Flex gap={{base: 45, md: 4}} align="end">
         <Box  
-          cursor="pointer" fontWeight={activeTab === "votadas" ? "bold" : "normal"}
-          color={activeTab === "votadas" ? "black" : "gray.500"}
-          borderBottom={activeTab === "votadas" ? "2px solid black" : "none"} pb={1}
-          onClick={() => setActiveTab("votadas")}
+          cursor="pointer" fontWeight={listingParam.orderBy === "most_voted" ? "bold" : "normal"}
+          color={listingParam.orderBy === "most_voted" ? "black" : "gray.500"}
+          borderBottom={listingParam.orderBy === "most_voted" ? "2px solid black" : "none"} pb={1}
+          onClick={() => sendListParam("most_voted", listingParam.titleSearch)}
         >
           Mais Votadas
         </Box>
         <Box
-          cursor="pointer"  fontWeight={activeTab === "recentes" ? "bold" : "normal"}
-          color={activeTab === "recentes" ? "black" : "gray.500"}
-          borderBottom={activeTab === "recentes" ? "2px solid black" : "none"} pb={1}
-          onClick={() => setActiveTab("recentes")}
+          cursor="pointer"  fontWeight={listingParam.orderBy === "latest" ? "bold" : "normal"}
+          color={listingParam.orderBy === "latest" ? "black" : "gray.500"}
+          borderBottom={listingParam.orderBy === "latest" ? "2px solid black" : "none"} pb={1}
+          onClick={() => sendListParam("latest", listingParam.titleSearch)}
         >
           Mais Recentes
         </Box>
@@ -38,6 +41,7 @@ export function SearchBar() {
         color="gray"
         bg={useColorModeValue("gray.200", "gray.100")}
         borderRadius="xl"
+        onChange={(event) => sendListParam(listingParam.orderBy,event.currentTarget.value)}
       />
     </Flex>
 
