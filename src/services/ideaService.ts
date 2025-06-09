@@ -1,4 +1,4 @@
-import type { Idea, IdeaListingParam, NewIdea, Pagination } from "./models"
+import type { Comment, Idea, IdeaListingParam, NewComment, NewIdea, Pagination } from "./models"
 
 type typeNotification = (msg: string, description ?: string) => void
 
@@ -21,10 +21,9 @@ export async function voteOnIdea(ideaId: number, success: typeNotification, erro
     
 }
 
-export async function createComment(coment: Comment, success: typeNotification, error: typeNotification){
-    console.log("enviando comentário para api: ")
-    console.log(coment)
+export async function createComment(comment: NewComment, success: typeNotification, error: typeNotification): Promise<Comment>{
     success("Seu comentário foi registrado")
+    return {id: 100, comment: comment.comment, ideaId: comment.ideaId, author: {id:1, name: "Fernando coelho"}}
 }
 
 export async function loadHighlightIdeas(error: typeNotification){
@@ -162,4 +161,39 @@ export async function findIdea(ideaId: number, error: typeNotification){
             liked: false,
             createdAt: new Date()
         }
+}
+
+export async function loadComments(error: typeNotification, page: number): Promise<Pagination<Comment>>{
+    const result =  {
+        currentPage: page,
+        totalPages: 10,
+        itemsPerPage: 10,
+        totalItems: 100,
+        data: [
+        {
+            id: 1,
+            comment: "Permite que usuários votem e comentem instantaneamente em ideias",
+            ideaId: 1,
+            author: {
+                id: 1,
+                name: "Fernando Coelho Saraiva"
+            }
+        },
+                {
+                id: 2,
+            comment: "Permite que usuários votem e comentem instantaneamente em ideias Permite que usuários votem e comentem instantaneamente em ideias Permite que usuários votem e comentem instantaneamente em ideias Permite que usuários votem e comentem instantaneamente em ideias Permite que usuários votem e comentem instantaneamente em ideias",
+            ideaId: 1,
+            author: {
+                id: 1,
+                name: "Fernando Coelho Saraiva"
+            }
+        },
+        ]
+    }
+
+    return new Promise((res) => {
+        setTimeout(() => {
+            res(result)
+        }, page == 1 ? 1000: 100)
+    });
 }

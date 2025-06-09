@@ -47,9 +47,7 @@ export function FormIdea() {
           </Select>
         </FormControl>
 
-        <Button colorScheme='blue' mr={1} fontSize="16" fontWeight={"normal"} type="submit">
-          Save
-        </Button>
+        <Button colorScheme='blue' mr={1} fontSize="16" fontWeight={"normal"} type="submit"> Save </Button>
       </form>
     </Box>
   );

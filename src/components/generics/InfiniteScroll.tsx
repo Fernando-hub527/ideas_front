@@ -37,7 +37,7 @@ export function InfiniteScroll<T>({setPage, content, ScrolledComponent, emitEven
 
   return (
     <VStack align="start" spacing={4} px={4} py={6} maxW="99vw" >
-      {content.data.map((data) => <ScrolledComponent contentData={data} emitEvent={emitEvent}/>)}
+      {content.data.map((data, index) => <ScrolledComponent key={index} contentData={data} emitEvent={emitEvent}/>)}
     
     {loading && <Spinner />}
       <Box ref={observerRef} h="1px" /> 
