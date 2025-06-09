@@ -152,3 +152,14 @@ export async function loadIdeas(error: typeNotification, page: number, params: I
         }, page == 1 ? 2000: 100)
     });
 }
+
+export async function findIdea(ideaId: number, error: typeNotification){
+    return {
+            id: 1, title: "Sistema de Feedback em Tempo Real", 
+            description: "Permite que usuários votem e comentem instantaneamente em ideias.ermite que usuários votem e comentem instantaneamente em ideias.ermite que usuários votem e comentem instantaneamente em ideias.ermite que usuários votem e comentem instantaneamente em ideias.ermite que usuários votem e comentem instantaneamente em ideias.",
+            author: "Fernando Coelho",
+            category: "TECNOLOGIA",
+            liked: false,
+            createdAt: new Date()
+        }
+}

@@ -4,8 +4,8 @@ import {
 import routesConfig from "./routesConfig.ts";
 import { Root } from "../components/generics/Root.tsx";
 import { IdeasFeed } from "../pages/IdeasFeed.tsx";
-import { DetailsIdea } from "../pages/DetailsIdea.tsx";
 import { Login } from "../pages/Login.tsx";
+import { Idea } from "../pages/Idea.tsx";
 
 const routes = createBrowserRouter([
   {path: routesConfig.login, Component: Login},
@@ -14,7 +14,7 @@ const routes = createBrowserRouter([
     Component: Root,
     children: [
       {index: true, Component: IdeasFeed},
-      {path: routesConfig.ideas, Component: DetailsIdea}
+      {path: routesConfig.ideas, Component: Idea}
     ]
   },
 
