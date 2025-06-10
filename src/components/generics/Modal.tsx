@@ -13,7 +13,7 @@ export function DefaultModal(props: {onClose: ()=>void, isOpen: boolean, title: 
     <>
       <Modal isOpen={props.isOpen} onClose={props.onClose}>
         <ModalOverlay />
-        <ModalContent bg="gray.200">
+        <ModalContent bg="gray.50">
           <ModalHeader>{props.title}</ModalHeader>
           <ModalCloseButton />
           <ModalBody marginTop={-5}>

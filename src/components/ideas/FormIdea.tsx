@@ -25,7 +25,7 @@ export function FormIdea() {
   const notifySuccess = (msg: string) =>  toast.success(msg)
 
   return (
-    <Box maxW="md" mx="auto" mt={6} p={4} borderWidth="1px" borderRadius="md" >
+    <Box maxW="md" mx="auto" mt={6} p={4} borderWidth="0px" borderRadius="md" >
       <Toaster/>
       <form onSubmit={handleSubmit} >
         <FormControl isRequired mb={4}>

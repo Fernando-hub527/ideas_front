@@ -3,7 +3,6 @@ import {
   Flex,
   Text,
   Heading,
-  Button,
   HStack,
 } from "@chakra-ui/react";
 
@@ -25,7 +24,6 @@ export function DetailsIdea(props: { idea: Idea }) {
 
                 <Text fontSize="sm" color="gray.600" mb={4}> {props.idea.description} </Text>
 
-                <Button width={{ base: "100%", sm: "min" }} size="sm" colorScheme="blue"> Curtir </Button>
             </Flex>
 
             <Box mt={6}>
