@@ -34,6 +34,7 @@ export function DetailsIdea(props: { idea: Idea }) {
                     <Text fontSize="sm" color="gray.600"> Categoria: {props.idea.category} </Text>
                     <Text fontSize="sm" color="gray.600"> Criado por: {props.idea.author} </Text>
                     <Text fontSize="sm" color="gray.600"> Criado em: {props.idea.createdAt.toLocaleDateString()} </Text>
+                    <Text fontSize="sm" color="gray.600"> Votos: {props.idea.votos} </Text>
                 </HStack>
             </Box>
         </Box>

@@ -1,6 +1,5 @@
-import type { Comment, Idea, IdeaListingParam, NewComment, NewIdea, Pagination } from "./models"
-
-type typeNotification = (msg: string, description ?: string) => void
+import type { IdeaListingParam, typeNotification } from "./customTypes"
+import type { Comment, Idea, NewComment, NewIdea, Pagination } from "./models"
 
 export async function createIdea(idea: NewIdea, success: typeNotification, error: typeNotification){
     console.log("envia para api: ")
@@ -50,7 +49,8 @@ export async function loadHighlightIdeas(error: typeNotification){
             author: "Fernando Coelho",
             category: "CULTURA",
             liked: false,
-            createdAt: new Date()
+            createdAt: new Date(),
+            votos: 10
         },
     ]
 }
@@ -84,7 +84,8 @@ export async function loadIdeas(error: typeNotification, page: number, params: I
             author: "Fernando Coelho",
             category: "CULTURA",
             liked: false,
-            createdAt: new Date()
+            createdAt: new Date(),
+            votos: 10
         },
                     {
             id: 3, title: "Sistema de Feedback em Tempo Real", 
@@ -92,7 +93,8 @@ export async function loadIdeas(error: typeNotification, page: number, params: I
             author: "Fernando Coelho",
             category: "CULTURA",
             liked: false,
-            createdAt: new Date()
+            createdAt: new Date(),
+            votos: 10
         },
                     {
             id: 3, title: "Sistema de Feedback em Tempo Real", 
@@ -100,7 +102,8 @@ export async function loadIdeas(error: typeNotification, page: number, params: I
             author: "Fernando Coelho",
             category: "CULTURA",
             liked: false,
-            createdAt: new Date()
+            createdAt: new Date(),
+            votos: 10
         },
                     {
             id: 3, title: "Sistema de Feedback em Tempo Real", 
@@ -108,7 +111,8 @@ export async function loadIdeas(error: typeNotification, page: number, params: I
             author: "Fernando Coelho",
             category: "CULTURA",
             liked: false,
-            createdAt: new Date()
+            createdAt: new Date(),
+            votos: 10
         },
                     {
             id: 3, title: "Sistema de Feedback em Tempo Real", 
@@ -116,7 +120,8 @@ export async function loadIdeas(error: typeNotification, page: number, params: I
             author: "Fernando Coelho",
             category: "CULTURA",
             liked: false,
-            createdAt: new Date()
+            createdAt: new Date(),
+            votos: 10
         },
                     {
             id: 3, title: "Sistema de Feedback em Tempo Real", 
@@ -124,7 +129,8 @@ export async function loadIdeas(error: typeNotification, page: number, params: I
             author: "Fernando Coelho",
             category: "CULTURA",
             liked: false,
-            createdAt: new Date()
+            createdAt: new Date(),
+            votos: 10
         },
                     {
             id: 3, title: "Sistema de Feedback em Tempo Real", 
@@ -132,7 +138,8 @@ export async function loadIdeas(error: typeNotification, page: number, params: I
             author: "Fernando Coelho",
             category: "CULTURA",
             liked: false,
-            createdAt: new Date()
+            createdAt: new Date(),
+            votos: 10
         },
                     {
             id: 3, title: "Sistema de Feedback em Tempo Real", 
@@ -140,7 +147,8 @@ export async function loadIdeas(error: typeNotification, page: number, params: I
             author: "Fernando Coelho",
             category: "CULTURA",
             liked: false,
-            createdAt: new Date()
+            createdAt: new Date(),
+            votos: 10
         },
     ]
     }
@@ -159,7 +167,8 @@ export async function findIdea(ideaId: number, error: typeNotification){
             author: "Fernando Coelho",
             category: "TECNOLOGIA",
             liked: false,
-            createdAt: new Date()
+            createdAt: new Date(),
+            votos: 10
         }
 }
 

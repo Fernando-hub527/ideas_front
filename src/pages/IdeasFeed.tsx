@@ -3,11 +3,12 @@ import { useEffect, useState } from "react";
 import { HighlightIdeas } from "../components/ideas/HighlightIdeas";
 import { SearchBar } from "../components/generics/SearchBar";
 import { InfiniteScroll } from "../components/generics/InfiniteScroll";
-import type { Idea, IdeaListingParam, Pagination } from "../services/models";
+import type { Idea, Pagination } from "../services/models";
 import { loadIdeas } from "../services/ideaService";
 import toast from "react-hot-toast";
 import { NotificationError } from "../components/generics/notify/Notify";
 import { IdeaItem } from "../components/ideas/IdeaItem";
+import type { IdeaListingParam } from "../services/customTypes";
 
 export function IdeasFeed() {
     const [loading, setLoading] = useState(false);
