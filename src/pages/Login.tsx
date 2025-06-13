@@ -15,7 +15,7 @@ import {
   FormErrorMessage,
 } from '@chakra-ui/react';
 import { useState } from 'react';
-import toast from 'react-hot-toast';
+import toast, { Toaster } from 'react-hot-toast';
 import { FaUser } from 'react-icons/fa';
 import { NotificationError } from '../components/generics/notify/Notify';
 import { loginUser } from '../services/userService';
@@ -61,6 +61,7 @@ export function Login(){
     
         <Flex minH="100vh" minW={{base: "100vw", md: "full"}} alignItems={{base: 'center', md: "normal"}} 
             justifyContent={{base: 'center', md: "normal"}} direction={{ base: 'column', md: 'row' }} position="relative">
+            <Toaster />
             <DescriptionAnimation />
 
             <Box

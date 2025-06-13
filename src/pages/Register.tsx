@@ -12,7 +12,7 @@ import {
   FormErrorMessage,
 } from '@chakra-ui/react';
 import { useState } from 'react';
-import toast from 'react-hot-toast';
+import toast, { Toaster } from 'react-hot-toast';
 import { NotificationError } from '../components/generics/notify/Notify';
 import { createUser } from '../services/userService';
 import { createCookie } from '../utils/cookies';
@@ -63,6 +63,7 @@ export function Register(){
     return (
         <Flex minH="100vh" minW={{base: "100vw", md: "full"}} alignItems={{base: 'center', md: "normal"}} 
             justifyContent={{base: 'center', md: "normal"}} direction={{ base: 'column', md: 'row' }} position="relative">
+            <Toaster />
             <DescriptionAnimation />
 
 

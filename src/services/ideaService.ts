@@ -1,6 +1,7 @@
 import type { IdeaListingParam, typeNotification } from "./customTypes"
 import type { Comment, Idea, NewComment, NewIdea, Pagination } from "./models"
 
+
 export async function createIdea(idea: NewIdea, success: typeNotification, error: typeNotification){
     console.log("envia para api: ")
     console.log(idea)
