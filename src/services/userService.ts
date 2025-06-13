@@ -5,9 +5,9 @@ import axios from "axios";
 
 export async function createUser(user: User, error: typeNotification): Promise<User | null>{
     try {
-        const response = await axios.post<User>(`${apiConfig}/user/`, {
+        const response = await axios.post<User>(`${apiConfig.urlDefault}/user/`, {
             email: user.email,  password: user.password, name: user.name
-        });
+        }, {withCredentials: true,});
         return response.data;
     } catch (err: unknown) {
         if (axios.isAxiosError(err)) {
@@ -22,10 +22,10 @@ export async function createUser(user: User, error: typeNotification): Promise<U
 // todo: Add refreshToken routine
 export async function loginUser(email: string, password: string, error: typeNotification): Promise<User | null>{
     try {
-        const response = await axios.post<User>(`${apiConfig}/user/login`, {
+        const response = await axios.post<User>(`${apiConfig.urlDefault}/user/login`, {
             email,
             password,
-        });
+        }, {withCredentials: true,});
         return response.data;
     } catch (err: unknown) {
         if (axios.isAxiosError(err)) {

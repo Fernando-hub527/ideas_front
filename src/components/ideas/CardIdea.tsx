@@ -16,8 +16,10 @@ export function CardIdea(props: {idea: Idea, setLoading: (loading: boolean) => v
     const registerVote = async () =>{
         props.setLoading(true)
         const state = await voteOnIdea(props.idea.id, notificationSuccess, notificationError)
-        if (state) props.toLike()
         props.setLoading(false)
+        if (state) {
+            props.toLike()
+        }
     }
 
     const notificationError = (title: string, message ?: string) => {
@@ -32,6 +34,7 @@ export function CardIdea(props: {idea: Idea, setLoading: (loading: boolean) => v
             bg="gray.200" 
             minW="250"
             maxW="280"
+            height={"250"}
             borderRadius="2xl" p={5} w="20%"
             transition="all 0.3s ease"
             _hover={{transform: "translateY(5px)", shadow: "0px 0px 10px 0px gray"}}

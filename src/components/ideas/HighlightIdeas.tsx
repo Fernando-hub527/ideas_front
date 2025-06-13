@@ -32,7 +32,7 @@ export function HighlightIdeas(props: {setLoading: (loading: boolean) => void}){
     }
 
     const cardsHighlight = highlight.map((idea) => {
-        return <CardIdea setLoading = {props.setLoading} idea = {idea} toLike = {() => setLiked(idea.id)} />
+        return <CardIdea key={idea.id} setLoading = {props.setLoading} idea = {idea} toLike = {() => setLiked(idea.id)} />
     })
 
     return (

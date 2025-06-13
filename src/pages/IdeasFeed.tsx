@@ -20,6 +20,7 @@ export function IdeasFeed() {
         const loadData = async () => {
             loadIdeas(()=>{}, page, listingParam)
                 .then((response) => {
+                    if (!response) return
                     setIdeas((ideas) => {
                         response.data = [...ideas.data, ...response.data]
                         return response
@@ -35,7 +36,7 @@ export function IdeasFeed() {
         const loadData = async () => {
             setLoading(true)
             loadIdeas(()=>{}, 1, listingParam)
-                .then((response) => setIdeas((response)))
+                .then((response) => setIdeas((response || ideas)))
                 .catch(() => notificationError("Não foi possível carregar mais ideias", "tente novamente mais tarde"))
                 .finally(() => setLoading(false))
             

@@ -1,209 +1,99 @@
+import axios from "axios"
 import type { IdeaListingParam, typeNotification } from "./customTypes"
 import type { Comment, Idea, NewComment, NewIdea, Pagination } from "./models"
+import apiConfig from "./apiConfig"
 
-
-export async function createIdea(idea: NewIdea, success: typeNotification, error: typeNotification){
-    console.log("envia para api: ")
-    console.log(idea)
-    error("Não foi possível criar sua ideia", "tente novamente mais tarde")
-}
-
-export async function voteOnIdea(ideaId: number, success: typeNotification, error: typeNotification): Promise<boolean>{
-    console.log("votando em idea: ")
-    console.log(ideaId)
-    return new Promise((res) => {
-        setTimeout(() => {
-            success("Seu voto foi registrado com sucesso")
-            res(true)
-        }, 1000)
-    })
-
-    
-}
-
-export async function createComment(comment: NewComment, success: typeNotification, error: typeNotification): Promise<Comment>{
-    success("Seu comentário foi registrado")
-    return {id: 100, comment: comment.comment, ideaId: comment.ideaId, author: {id:1, name: "Fernando coelho"}}
-}
 
 export async function loadHighlightIdeas(error: typeNotification){
-    return [
-        {
-            id: 1, title: "Sistema de Feedback em Tempo Real", 
-            description: "Permite que usuários votem e comentem instantaneamente em ideias.",
-            author: "Fernando Coelho",
-            category: "TECNOLOGIA",
-            liked: false,
-            createdAt: new Date()
-        },
-        {
-            id: 2, title: "Sistema de Feedback em Tempo Real", 
-            description: "Permite que usuários votem e comentem instantaneamente em ideias.",
-            author: "Fernando Coelho",
-            category: "SOCIAL",
-            liked: false,
-            createdAt: new Date()
-        },
-            {
-            id: 3, title: "Sistema de Feedback em Tempo Real", 
-            description: "Permite que usuários votem e comentem instantaneamente em ideias.",
-            author: "Fernando Coelho",
-            category: "CULTURA",
-            liked: false,
-            createdAt: new Date(),
-            votos: 10
-        },
-    ]
-}
-
-export async function loadIdeas(error: typeNotification, page: number, params: IdeaListingParam): Promise<Pagination<Idea>>{
-    const result =  {
-        currentPage: page,
-        totalPages: 10,
-        itemsPerPage: 10,
-        totalItems: 100,
-        data: [
-        {
-            id: 10, title: "Sistema de Feedback em Tempo Real", 
-            description: "Permite que usuários votem e comentem instantaneamente em ideias. Permite que usuários votem e comentem instantaneamente em ideias. Permite que usuários votem e comentem instantaneamente em ideias. Permite que usuários votem e comentem instantaneamente em ideias. Permite que usuários votem e comentem instantaneamente em ideias. Permite que usuários votem e comentem instantaneamente em ideias. Permite que usuários votem e comentem instantaneamente em ideias.", 
-            author: "Fernando Coelho",
-            category: "TECNOLOGIA",
-            liked: false,
-            createdAt: new Date()
-        },
-        {
-            id: 2, title: "Sistema de Feedback em Tempo Real", 
-            description: "Permite que usuários votem e comentem instantaneamente em ideias.",
-            author: "Fernando Coelho",
-            category: "SOCIAL",
-            liked: false,
-            createdAt: new Date()
-        },
-            {
-            id: 3, title: "Sistema de Feedback em Tempo Real", 
-            description: "Permite que usuários votem e comentem instantaneamente em ideias.",
-            author: "Fernando Coelho",
-            category: "CULTURA",
-            liked: false,
-            createdAt: new Date(),
-            votos: 10
-        },
-                    {
-            id: 3, title: "Sistema de Feedback em Tempo Real", 
-            description: "Permite que usuários votem e comentem instantaneamente em ideias.",
-            author: "Fernando Coelho",
-            category: "CULTURA",
-            liked: false,
-            createdAt: new Date(),
-            votos: 10
-        },
-                    {
-            id: 3, title: "Sistema de Feedback em Tempo Real", 
-            description: "Permite que usuários votem e comentem instantaneamente em ideias.",
-            author: "Fernando Coelho",
-            category: "CULTURA",
-            liked: false,
-            createdAt: new Date(),
-            votos: 10
-        },
-                    {
-            id: 3, title: "Sistema de Feedback em Tempo Real", 
-            description: "Permite que usuários votem e comentem instantaneamente em ideias.",
-            author: "Fernando Coelho",
-            category: "CULTURA",
-            liked: false,
-            createdAt: new Date(),
-            votos: 10
-        },
-                    {
-            id: 3, title: "Sistema de Feedback em Tempo Real", 
-            description: "Permite que usuários votem e comentem instantaneamente em ideias.",
-            author: "Fernando Coelho",
-            category: "CULTURA",
-            liked: false,
-            createdAt: new Date(),
-            votos: 10
-        },
-                    {
-            id: 3, title: "Sistema de Feedback em Tempo Real", 
-            description: "Permite que usuários votem e comentem instantaneamente em ideias.",
-            author: "Fernando Coelho",
-            category: "CULTURA",
-            liked: false,
-            createdAt: new Date(),
-            votos: 10
-        },
-                    {
-            id: 3, title: "Sistema de Feedback em Tempo Real", 
-            description: "Permite que usuários votem e comentem instantaneamente em ideias.",
-            author: "Fernando Coelho",
-            category: "CULTURA",
-            liked: false,
-            createdAt: new Date(),
-            votos: 10
-        },
-                    {
-            id: 3, title: "Sistema de Feedback em Tempo Real", 
-            description: "Permite que usuários votem e comentem instantaneamente em ideias.",
-            author: "Fernando Coelho",
-            category: "CULTURA",
-            liked: false,
-            createdAt: new Date(),
-            votos: 10
-        },
-    ]
+    try {
+        const response = await axios.get<Idea[]>(`${apiConfig.urlDefault}/idea/highligh`, {withCredentials: true});
+        return response.data;
+    } catch (err: unknown) {
+        if (axios.isAxiosError(err)) {
+            error("Não foi possível listar ideias em destaque", "Tente novamente mais tarde")
+        } else error("Erro inesperado", "Algo deu errado. Tente novamente.");
+        return [];
     }
-
-    return new Promise((res) => {
-        setTimeout(() => {
-            res(result)
-        }, page == 1 ? 2000: 100)
-    });
 }
+
+export async function createIdea(idea: NewIdea, error: typeNotification){
+    try {
+        const response = await axios.post<Idea>(`${apiConfig.urlDefault}/idea`, idea, {withCredentials: true});
+        return response.data;
+    } catch (err: unknown) {
+        if (axios.isAxiosError(err)) {
+            error("Não foi possível criar ideias", "Tente novamente mais tarde")
+        } else error("Erro inesperado", "Algo deu errado. Tente novamente.");
+        return null;
+    }
+}
+
+export async function voteOnIdea(ideaId: number, notificationSuccess: typeNotification, error: typeNotification): Promise<boolean>{
+    try {
+        await axios.post<Idea>(`${apiConfig.urlDefault}/idea/vote`, {ideaId: ideaId}, {withCredentials: true});
+        notificationSuccess("Se voto foi registrado !")
+        return true;
+    } catch (err: unknown) {
+        if (axios.isAxiosError(err)) {
+            if(err.status == 409) {error("Ops..", "Você já votou nessa ideia"); return true}
+            else error("Não foi possível registrar seu voto", "Tente novamente mais tarde")
+        } else error("Erro inesperado", "Algo deu errado. Tente novamente.");
+
+        return false;
+    }
+}
+
+export async function loadIdeas(error: typeNotification, page: number, params: IdeaListingParam): Promise<Pagination<Idea> | null>{
+    try {
+        let url = `${apiConfig.urlDefault}/idea?orderBy=${params.orderBy}&page=${page}&limit=50`
+        if(params.titleSearch) url = url.concat(`&title=${params.titleSearch}`)
+        const ideas = await axios.get<Pagination<Idea>>(url, {withCredentials: true});
+        return ideas.data;
+    } catch (err: unknown) {
+        if (axios.isAxiosError(err)) {
+            error("Não foi possível listar ideias", "Tente novamente mais tarde")
+        } else error("Erro inesperado", "Algo deu errado. Tente novamente.");
+
+        return null;
+    }
+}
+
+
+export async function createComment(comment: NewComment, success: typeNotification, error: typeNotification): Promise<Comment | null>{
+    try {
+        const response = await axios.post<Comment>(`${apiConfig.urlDefault}/idea/comment`, comment, {withCredentials: true});
+        success("Seu comentário foi registrado")
+        return response.data;
+    } catch (err: unknown) {
+        if (axios.isAxiosError(err)) {
+            error("Não foi possível criar ideias", "Tente novamente mais tarde")
+        } else error("Erro inesperado", "Algo deu errado. Tente novamente.");
+        return null;
+    }
+}
+
 
 export async function findIdea(ideaId: number, error: typeNotification){
-    return {
-            id: 1, title: "Sistema de Feedback em Tempo Real", 
-            description: "Permite que usuários votem e comentem instantaneamente em ideias.ermite que usuários votem e comentem instantaneamente em ideias.ermite que usuários votem e comentem instantaneamente em ideias.ermite que usuários votem e comentem instantaneamente em ideias.ermite que usuários votem e comentem instantaneamente em ideias.",
-            author: "Fernando Coelho",
-            category: "TECNOLOGIA",
-            liked: false,
-            createdAt: new Date(),
-            votos: 10
-        }
+    try {
+        const response = await axios.get<Idea>(`${apiConfig.urlDefault}/idea/${ideaId}`, {withCredentials: true});
+        return response.data;
+    } catch (err: unknown) {
+        if (axios.isAxiosError(err)) {
+            error("Não foi possível encontrar ideia", "Tente novamente mais tarde")
+        } else error("Erro inesperado", "Algo deu errado. Tente novamente.");
+        return null;
+    }
 }
 
-export async function loadComments(error: typeNotification, page: number): Promise<Pagination<Comment>>{
-    const result =  {
-        currentPage: page,
-        totalPages: 10,
-        itemsPerPage: 10,
-        totalItems: 100,
-        data: [
-        {
-            id: 1,
-            comment: "Permite que usuários votem e comentem instantaneamente em ideias",
-            ideaId: 1,
-            author: {
-                id: 1,
-                name: "Fernando Coelho Saraiva"
-            }
-        },
-                {
-                id: 2,
-            comment: "Permite que usuários votem e comentem instantaneamente em ideias Permite que usuários votem e comentem instantaneamente em ideias Permite que usuários votem e comentem instantaneamente em ideias Permite que usuários votem e comentem instantaneamente em ideias Permite que usuários votem e comentem instantaneamente em ideias",
-            ideaId: 1,
-            author: {
-                id: 1,
-                name: "Fernando Coelho Saraiva"
-            }
-        },
-        ]
-    }
+export async function loadComments(error: typeNotification, page: number, ideaId: number): Promise<Pagination<Comment> | null>{
+    try {
+        const comments = await axios.get<Pagination<Comment>>(`${apiConfig.urlDefault}/idea/comments/${ideaId}?page=${page}&limit=50`, {withCredentials: true});
+        return comments.data;
+    } catch (err: unknown) {
+        if (axios.isAxiosError(err)) {
+            error("Não foi possível listar comentários", "Tente novamente mais tarde")
+        } else error("Erro inesperado", "Algo deu errado. Tente novamente.");
 
-    return new Promise((res) => {
-        setTimeout(() => {
-            res(result)
-        }, page == 1 ? 1000: 100)
-    });
+        return null;
+    }
 }

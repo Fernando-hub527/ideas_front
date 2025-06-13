@@ -32,8 +32,9 @@ export function Idea(){
  
     useEffect(() => {
         const loadData = async () => {
-            loadComments(()=>{}, page)
+            loadComments(()=>{}, page, Number(param["idea"]))
                 .then((response) => {
+                    if (!response) return
                     setComments((comments) => {
                         response.data = [...comments.data, ...response.data]
                         return response
@@ -52,6 +53,7 @@ export function Idea(){
     const sendComment = async () => {
         if (! commentInput || !commentInput.current || !commentInput.current.value) return
         const comment = await createComment({comment: commentInput.current.value, ideaId: Number(param["idea"])}, notifySuccess, notificationError)
+        commentInput.current.value = ""
         if (!comment) return
         setComments((coments) => {
             coments.data.unshift(comment)

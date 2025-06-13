@@ -4,7 +4,7 @@ import {
   Input,
   useColorModeValue,
 } from "@chakra-ui/react";
-import type { IdeaListingParam } from "../../services/models";
+import type { IdeaListingParam } from "../../services/customTypes";
 
 export function SearchBar({listingParam, setListingParam}: {listingParam: IdeaListingParam, setListingParam: (param: IdeaListingParam) => void}) {
 
@@ -41,7 +41,7 @@ export function SearchBar({listingParam, setListingParam}: {listingParam: IdeaLi
         color="gray"
         bg={useColorModeValue("gray.200", "gray.100")}
         borderRadius="xl"
-        onChange={(event) => sendListParam(listingParam.orderBy,event.currentTarget.value)}
+        onChange={(event) => sendListParam(listingParam.orderBy, event.currentTarget.value)}
       />
     </Flex>
 

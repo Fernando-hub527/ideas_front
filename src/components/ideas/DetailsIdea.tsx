@@ -30,9 +30,9 @@ export function DetailsIdea(props: { idea: Idea }) {
                 <Heading size="sm" mb={5}>Informações</Heading>
                 <HStack gap={4} flexWrap={{ base: "wrap", md: "nowrap" }}>
                     <Text fontSize="sm" color="gray.600"> Categoria: {props.idea.category} </Text>
-                    <Text fontSize="sm" color="gray.600"> Criado por: {props.idea.author} </Text>
-                    <Text fontSize="sm" color="gray.600"> Criado em: {props.idea.createdAt.toLocaleDateString()} </Text>
-                    <Text fontSize="sm" color="gray.600"> Votos: {props.idea.votos} </Text>
+                    <Text fontSize="sm" color="gray.600"> Criado por: {props.idea.author.name} </Text>
+                    <Text fontSize="sm" color="gray.600"> Criado em: {new Date(props.idea.createdAt).toLocaleDateString()} </Text>
+                    <Text fontSize="sm" color="gray.600"> Votos: {props.idea.votes} </Text>
                 </HStack>
             </Box>
         </Box>

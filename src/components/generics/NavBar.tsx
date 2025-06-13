@@ -44,7 +44,7 @@ export function NavBar() {
                 </div>
             </header>
             <DefaultModal isOpen = {isOpen} onClose={onClose} title="Compartilhe sua ideia">
-                <FormIdea />    
+                <FormIdea onClose={onClose}/>    
             </DefaultModal> 
         </>
     );

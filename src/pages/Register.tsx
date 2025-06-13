@@ -15,7 +15,6 @@ import { useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import { NotificationError } from '../components/generics/notify/Notify';
 import { createUser } from '../services/userService';
-import { createCookie } from '../utils/cookies';
 import routesConfig from '../routes/routesConfig';
 import { useNavigate } from 'react-router';
 import { DescriptionAnimation } from '../components/login/DescriptionAnimation';
@@ -52,8 +51,7 @@ export function Register(){
         if(!response) return
 
         toast.success("Sua conta foi criada")
-        createCookie("user", response.name, 1)
-        nav(routesConfig.home)
+        nav(routesConfig.login)
     };
 
     const notifyError = (title: string, message ?: string) => {
